@@ -142,6 +142,37 @@
     .progress-bar {
       transition: width 1.5s ease-in-out;
     }
+
+    /* Terminal Styles */
+    .terminal-window {
+      background-color: #0c0c0c;
+      border: 1px solid #333;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      font-family: 'JetBrains Mono', monospace;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .terminal-header {
+      background-color: #1a1a1a;
+      border-bottom: 1px solid #333;
+    }
+
+    .terminal-body {
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+
+    .terminal-input {
+      background: transparent;
+      border: none;
+      color: #4ade80;
+      /* green-400 */
+      width: 100%;
+      outline: none;
+      font-family: inherit;
+    }
   </style>
 </head>
 
@@ -160,6 +191,8 @@
       </div>
 
       <div class="flex items-center gap-6">
+        <a href="creativity.html"
+          class="font-mono text-sm font-bold hover:text-blue-500 transition-colors">CREATIVITY</a>
         <button id="themeToggle"
           class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-all focus:outline-none">
           <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
@@ -200,7 +233,8 @@
         </div>
 
         <!-- Status Card -->
-        <div class="md:col-span-4 glass-panel p-8 rounded-2xl flex flex-col justify-center items-start">
+        <div class="md:col-span-4 glass-panel p-8 rounded-2xl flex flex-col justify-center items-start animate-float"
+          style="animation-delay: 0.5s;">
           <div class="flex items-center gap-3 mb-6">
             <span class="relative flex h-3 w-3">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -220,7 +254,8 @@
         </div>
 
         <!-- "About Me" - Quick Stats/Bio -->
-        <div class="md:col-span-12 lg:col-span-5 glass-panel p-8 rounded-2xl">
+        <div class="md:col-span-12 lg:col-span-5 glass-panel p-8 rounded-2xl animate-float"
+          style="animation-delay: 1.5s;">
           <h3 class="font-mono text-xl font-bold mb-6 flex items-center gap-2">
             <i data-lucide="user" class="w-5 h-5"></i> ABOUT_ME
           </h3>
@@ -245,37 +280,27 @@
           </div>
         </div>
 
-        <!-- Tech Stack Visual - Fixed Dark Mode -->
-        <div class="md:col-span-12 lg:col-span-7 glass-panel p-8 rounded-2xl flex flex-col justify-between">
-          <div class="flex justify-between items-start mb-6">
-            <h3 class="font-mono text-xl font-bold">CORE_STACK</h3>
-            <i data-lucide="cpu" class="w-6 h-6 opacity-50"></i>
-          </div>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <!-- Updated Classes: Removed transparency for better contrast in dark mode -->
-            <div
-              class="p-4 bg-gray-100 dark:bg-neutral-800 rounded-lg text-center hover:bg-blue-500 hover:text-black transition-colors duration-300 group">
-              <div class="font-bold text-lg group-hover:text-black dark:text-white">Flutter</div>
-              <div class="text-[10px] font-mono opacity-60 group-hover:text-black dark:text-gray-300">
-                MOBILE</div>
+        <!-- Terminal Access (Replaces Core Stack) -->
+        <div class="md:col-span-12 lg:col-span-7 rounded-2xl overflow-hidden h-full min-h-[300px] animate-float"
+          style="animation-delay: 2s;">
+          <div class="terminal-window w-full h-full">
+            <div class="terminal-header p-3 flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+              <div class="ml-4 text-xs text-gray-400 font-mono">guest@msinan-portfolio:~</div>
             </div>
-            <div
-              class="p-4 bg-gray-100 dark:bg-neutral-800 rounded-lg text-center hover:bg-yellow-500 hover:text-black transition-colors duration-300 group">
-              <div class="font-bold text-lg group-hover:text-black dark:text-white">Python</div>
-              <div class="text-[10px] font-mono opacity-60 group-hover:text-black dark:text-gray-300">
-                BACKEND</div>
-            </div>
-            <div
-              class="p-4 bg-gray-100 dark:bg-neutral-800 rounded-lg text-center hover:bg-cyan-500 hover:text-black transition-colors duration-300 group">
-              <div class="font-bold text-lg group-hover:text-black dark:text-white">React</div>
-              <div class="text-[10px] font-mono opacity-60 group-hover:text-black dark:text-gray-300">
-                FRONTEND</div>
-            </div>
-            <div
-              class="p-4 bg-gray-100 dark:bg-neutral-800 rounded-lg text-center hover:bg-green-500 hover:text-black transition-colors duration-300 group">
-              <div class="font-bold text-lg group-hover:text-black dark:text-white">Node.js</div>
-              <div class="text-[10px] font-mono opacity-60 group-hover:text-black dark:text-gray-300">
-                SERVER</div>
+            <div class="terminal-body p-6 text-sm md:text-base text-gray-300" id="terminal-output">
+              <div class="mb-4">
+                <span class="text-green-400">Welcome to M.Sinan's Interactive Terminal v1.0.0</span><br>
+                Type <span class="text-yellow-400">'help'</span> to see available commands.
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-green-400">➜</span>
+                <span class="text-blue-400">~</span>
+                <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false"
+                  autofocus>
+              </div>
             </div>
           </div>
         </div>
@@ -292,9 +317,9 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Internship 1 -->
         <div
-          class="glass-panel p-8 rounded-xl group hover:border-black dark:hover:border-white transition-all duration-300 hover:-translate-y-1">
+          class="glass-panel p-8 rounded-xl group hover:border-black dark:hover:border-white transition-all duration-300 hover:-translate-y-1 animate-float"
+          style="animation-delay: 1s;">
           <div class="flex justify-between items-start mb-4">
             <h3 class="text-2xl font-bold">Full Stack MERN Intern</h3>
             <span class="font-mono text-xs border border-current px-2 py-1 rounded">2024</span>
@@ -306,9 +331,9 @@
           </ul>
         </div>
 
-        <!-- Internship 2 -->
         <div
-          class="glass-panel p-8 rounded-xl group hover:border-black dark:hover:border-white transition-all duration-300 hover:-translate-y-1">
+          class="glass-panel p-8 rounded-xl group hover:border-black dark:hover:border-white transition-all duration-300 hover:-translate-y-1 animate-float"
+          style="animation-delay: 2s;">
           <div class="flex justify-between items-start mb-4">
             <h3 class="text-2xl font-bold">Flutter Dev Trainee</h3>
             <span class="font-mono text-xs border border-current px-2 py-1 rounded">2022</span>
@@ -334,7 +359,8 @@
 
       <div class="space-y-12">
         <!-- Project 1 -->
-        <div class="glass-panel p-8 md:p-12 rounded-2xl transition-all duration-500 hover:shadow-2xl">
+        <div class="glass-panel p-8 md:p-12 rounded-2xl transition-all duration-500 hover:shadow-2xl animate-float"
+          style="animation-delay: 0.5s;">
           <div class="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <div class="font-mono text-xs text-blue-500 mb-2">FEATURED PROJECT</div>
@@ -367,7 +393,7 @@
         <!-- Project 2 & 3 Grid -->
         <div class="grid md:grid-cols-2 gap-8">
           <!-- Project 2 -->
-          <div class="glass-panel p-8 rounded-2xl flex flex-col">
+          <div class="glass-panel p-8 rounded-2xl flex flex-col animate-float" style="animation-delay: 1.5s;">
             <div class="mb-auto">
               <h3 class="text-2xl font-bold mb-2">Edan Homestay</h3>
               <p class="font-mono text-xs opacity-50 mb-4">Room Booking Platform</p>
@@ -386,7 +412,7 @@
           </div>
 
           <!-- Project 3 -->
-          <div class="glass-panel p-8 rounded-2xl flex flex-col">
+          <div class="glass-panel p-8 rounded-2xl flex flex-col animate-float" style="animation-delay: 2.5s;">
             <div class="mb-auto">
               <h3 class="text-2xl font-bold mb-2">Scrap Management</h3>
               <p class="font-mono text-xs opacity-50 mb-4">Geo-Based Trading</p>
@@ -407,33 +433,7 @@
       </div>
     </section>
 
-    <!-- AI Tools Section -->
-    <section class="max-w-7xl mx-auto mb-32" id="ai-tools">
-      <div class="flex items-center gap-4 mb-12">
 
-        <div class="h-px bg-current flex-grow opacity-20"></div>
-        <h2
-          class="text-2xl font-mono font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-          03. AI_TOOLS</h2>
-      </div>
-
-      <div class="max-w-2xl mx-auto">
-        <!-- Image Compressor -->
-        <a href="image-compressor.html"
-          class="glass-panel p-8 rounded-xl group hover:border-black dark:hover:border-white transition-all duration-300 hover:-translate-y-1 block">
-          <div class="flex justify-between items-start mb-4">
-            <h3 class="text-2xl font-bold">Image Compressor</h3>
-            <i data-lucide="minimize-2" class="w-6 h-6 opacity-60 group-hover:scale-110 transition-transform"></i>
-          </div>
-          <p class="text-sm opacity-80 mb-6">
-            Compress images to reduce file size without losing quality. Efficient and fast client-side compression.
-          </p>
-          <div class="flex items-center gap-2 text-xs font-mono font-bold text-blue-600 dark:text-blue-400">
-            TRY_NOW <i data-lucide="arrow-right" class="w-3 h-3"></i>
-          </div>
-        </a>
-      </div>
-    </section>
 
     <!-- Skills & Expertise (New Section) -->
     <section class="max-w-7xl mx-auto mb-32" id="skills">
@@ -447,7 +447,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Languages -->
-        <div class="glass-panel p-6 rounded-xl">
+        <div class="glass-panel p-6 rounded-xl animate-float" style="animation-delay: 0.5s;">
           <h4 class="font-bold mb-4 flex items-center gap-2"><i data-lucide="code-2" class="w-4 h-4"></i>
             Languages</h4>
           <div class="flex flex-wrap gap-2">
@@ -460,7 +460,7 @@
           </div>
         </div>
         <!-- Frameworks -->
-        <div class="glass-panel p-6 rounded-xl">
+        <div class="glass-panel p-6 rounded-xl animate-float" style="animation-delay: 1.5s;">
           <h4 class="font-bold mb-4 flex items-center gap-2"><i data-lucide="layers" class="w-4 h-4"></i>
             Frameworks</h4>
           <div class="flex flex-wrap gap-2">
@@ -472,7 +472,7 @@
           </div>
         </div>
         <!-- Databases -->
-        <div class="glass-panel p-6 rounded-xl">
+        <div class="glass-panel p-6 rounded-xl animate-float" style="animation-delay: 2.5s;">
           <h4 class="font-bold mb-4 flex items-center gap-2"><i data-lucide="database" class="w-4 h-4"></i>
             Databases</h4>
           <div class="flex flex-wrap gap-2">
@@ -483,7 +483,7 @@
           </div>
         </div>
         <!-- Tools -->
-        <div class="glass-panel p-6 rounded-xl">
+        <div class="glass-panel p-6 rounded-xl animate-float" style="animation-delay: 3.5s;">
           <h4 class="font-bold mb-4 flex items-center gap-2"><i data-lucide="tool" class="w-4 h-4"></i> Tools
           </h4>
           <div class="flex flex-wrap gap-2">
@@ -510,28 +510,32 @@
             <div class="h-px bg-current flex-grow opacity-20"></div>
           </div>
           <div class="space-y-4">
-            <div class="glass-panel p-4 rounded-lg flex justify-between items-center">
+            <div class="glass-panel p-4 rounded-lg flex justify-between items-center animate-float"
+              style="animation-delay: 0.2s;">
               <div>
                 <h4 class="font-bold text-sm">Python Django Workshop</h4>
                 <span class="text-[10px] font-mono opacity-60">2025</span>
               </div>
               <i data-lucide="award" class="w-5 h-5 opacity-40"></i>
             </div>
-            <div class="glass-panel p-4 rounded-lg flex justify-between items-center">
+            <div class="glass-panel p-4 rounded-lg flex justify-between items-center animate-float"
+              style="animation-delay: 0.4s;">
               <div>
                 <h4 class="font-bold text-sm">Flutter Workshop</h4>
                 <span class="text-[10px] font-mono opacity-60">2024</span>
               </div>
               <i data-lucide="award" class="w-5 h-5 opacity-40"></i>
             </div>
-            <div class="glass-panel p-4 rounded-lg flex justify-between items-center">
+            <div class="glass-panel p-4 rounded-lg flex justify-between items-center animate-float"
+              style="animation-delay: 0.6s;">
               <div>
                 <h4 class="font-bold text-sm">Cyber Security and AI & ML</h4>
                 <span class="text-[10px] font-mono opacity-60">NIELIT-ISEAP III</span>
               </div>
               <i data-lucide="shield-check" class="w-5 h-5 opacity-40"></i>
             </div>
-            <div class="glass-panel p-4 rounded-lg flex justify-between items-center">
+            <div class="glass-panel p-4 rounded-lg flex justify-between items-center animate-float"
+              style="animation-delay: 0.8s;">
               <div>
                 <h4 class="font-bold text-sm">NPTEL Certifications</h4>
                 <span class="text-[10px] font-mono opacity-60">DBMS, Research Methodology,
@@ -550,7 +554,7 @@
               06. LANGUAGES</h2>
             <div class="h-px bg-current flex-grow opacity-20"></div>
           </div>
-          <div class="space-y-6 glass-panel p-8 rounded-2xl">
+          <div class="space-y-6 glass-panel p-8 rounded-2xl animate-float" style="animation-delay: 1s;">
             <!-- Malayalam -->
             <div>
               <div class="flex justify-between mb-2">
@@ -606,20 +610,23 @@
       </div>
 
       <div class="relative border-l-2 border-gray-200 dark:border-gray-800 ml-3 md:ml-6 space-y-12 pb-4">
-        <div class="relative pl-8 md:pl-12">
-          <div class="absolute -left-[9px] top-1 w-4 h-4 bg-blue-500 rounded-full ring-4 ring-white dark:ring-black">
+        <div class="relative pl-8 md:pl-12 glass-panel p-6 rounded-xl animate-float" style="animation-delay: 0.2s;">
+          <div
+            class="absolute -left-[9px] top-1/2 -translate-y-1/2 w-4 h-4 bg-blue-500 rounded-full ring-4 ring-white dark:ring-black">
           </div>
           <h3 class="text-xl font-bold">Master of Computer Applications (MCA)</h3>
           <div class="text-sm opacity-60 mb-2">KMCT Engineering College | 2023-2025</div>
         </div>
-        <div class="relative pl-8 md:pl-12">
-          <div class="absolute -left-[9px] top-1 w-4 h-4 bg-gray-400 rounded-full ring-4 ring-white dark:ring-black">
+        <div class="relative pl-8 md:pl-12 glass-panel p-6 rounded-xl animate-float" style="animation-delay: 1.2s;">
+          <div
+            class="absolute -left-[9px] top-1/2 -translate-y-1/2 w-4 h-4 bg-gray-400 rounded-full ring-4 ring-white dark:ring-black">
           </div>
           <h3 class="text-xl font-bold">Bachelor of Computer Applications (BCA)</h3>
           <div class="text-sm opacity-60 mb-2">GEMS Arts & Science College | 2019-2022</div>
         </div>
-        <div class="relative pl-8 md:pl-12">
-          <div class="absolute -left-[9px] top-1 w-4 h-4 bg-gray-400 rounded-full ring-4 ring-white dark:ring-black">
+        <div class="relative pl-8 md:pl-12 glass-panel p-6 rounded-xl animate-float" style="animation-delay: 2.2s;">
+          <div
+            class="absolute -left-[9px] top-1/2 -translate-y-1/2 w-4 h-4 bg-gray-400 rounded-full ring-4 ring-white dark:ring-black">
           </div>
           <h3 class="text-xl font-bold">Higher Secondary</h3>
           <div class="text-sm opacity-60 mb-2">PMSA HSS Chappanangadi | 2017-2019</div>
@@ -628,7 +635,8 @@
     </section>
 
     <!-- Contact -->
-    <footer class="max-w-7xl mx-auto px-6 py-20 text-center relative overflow-hidden rounded-t-3xl glass-panel"
+    <footer
+      class="max-w-7xl mx-auto px-6 py-20 text-center relative overflow-hidden rounded-t-3xl glass-panel animate-float"
       id="contact">
       <div class="relative z-10">
         <h2 class="text-4xl md:text-6xl font-bold mb-8">READY TO COLLABORATE?</h2>
@@ -859,6 +867,82 @@
       const isDark = html.classList.contains('dark');
       particles.material.color.setHex(isDark ? 0xffffff : 0x000000);
     });
+
+    // --- 5. Terminal Logic ---
+    const terminalInput = document.getElementById('terminal-input');
+    const terminalOutput = document.getElementById('terminal-output');
+    const commands = {
+      help: "Available commands: <span class='text-yellow-400'>about, projects, contact, clear, date, whoami</span>",
+      about: "I am M.Sinan, a passionate developer building cool things with code.",
+      projects: "Check out my work: <br>- <a href='#projects' class='text-blue-400 underline'>Duo Dine</a><br>- <a href='#projects' class='text-blue-400 underline'>Edan Homestay</a>",
+      contact: "Email: <a href='mailto:sinukallayi@gmail.com' class='text-blue-400 underline'>sinukallayi@gmail.com</a>",
+      clear: "clear",
+      date: new Date().toString(),
+      whoami: "guest"
+    };
+
+    if (terminalInput) {
+      terminalInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          const input = this.value.trim().toLowerCase();
+          let output = "";
+
+          if (input === 'clear') {
+            terminalOutput.innerHTML = `
+                        <div class="mb-4">
+                            <span class="text-green-400">Welcome to M.Sinan's Interactive Terminal v1.0.0</span><br>
+                            Type <span class="text-yellow-400">'help'</span> to see available commands.
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-400">➜</span>
+                            <span class="text-blue-400">~</span>
+                            <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false" autofocus>
+                        </div>
+                    `;
+            // Re-attach event listener to new input
+            const newInput = document.getElementById('terminal-input');
+            newInput.addEventListener('keydown', arguments.callee);
+            newInput.focus();
+            return;
+          } else if (commands[input]) {
+            output = commands[input];
+          } else if (input !== "") {
+            output = `<span class='text-red-400'>Command not found: ${input}</span>. Type 'help' for list.`;
+          }
+
+          if (input !== "") {
+            // Add previous command line (static)
+            const prevLine = document.createElement('div');
+            prevLine.className = "mb-2";
+            prevLine.innerHTML = `
+                        <span class="text-green-400">➜</span>
+                        <span class="text-blue-400">~</span>
+                        <span class="text-gray-300">${this.value}</span>
+                    `;
+
+            // Insert before the current input container (which is the parent of 'this')
+            const inputContainer = this.parentElement;
+            terminalOutput.insertBefore(prevLine, inputContainer);
+
+            // Add output
+            const outputLine = document.createElement('div');
+            outputLine.className = "mb-4 text-gray-300";
+            outputLine.innerHTML = output;
+            terminalOutput.insertBefore(outputLine, inputContainer);
+          }
+
+          this.value = '';
+          // Scroll to bottom
+          terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        }
+      });
+
+      // Focus input when clicking on terminal
+      document.querySelector('.terminal-window').addEventListener('click', () => {
+        const input = document.getElementById('terminal-input');
+        if (input) input.focus();
+      });
+    }
 
   </script>
 </body>
