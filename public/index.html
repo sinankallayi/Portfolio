@@ -896,10 +896,132 @@
     const terminalInput = document.getElementById('terminal-input');
     const terminalOutput = document.getElementById('terminal-output');
     const commands = {
-      help: "Available commands: <span class='text-yellow-400'>about, projects, contact, clear, date, whoami</span>",
-      about: "I am M.Sinan, a passionate developer building cool things with code.",
-      projects: "Check out my work: <br>- <a href='#projects' class='text-blue-400 underline'>Duo Dine</a><br>- <a href='#projects' class='text-blue-400 underline'>Edan Homestay</a>",
-      contact: "Email: <a href='mailto:sinukallayi@gmail.com' class='text-blue-400 underline'>sinukallayi@gmail.com</a>",
+      help: `
+        <div class="mb-2 text-gray-400">Available commands:</div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs font-mono">
+            <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-center text-yellow-400">about</span>
+            <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-center text-blue-400">projects</span>
+            <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-center text-green-400">internship</span>
+            <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-center text-purple-400">education</span>
+            <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-center text-pink-400">certificates</span>
+            <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-center text-cyan-400">skills</span>
+            <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-center text-orange-400">contact</span>
+            <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-center text-red-400">resume</span>
+            <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-center text-gray-400">clear</span>
+            <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-center text-gray-400">whoami</span>
+        </div>
+      `,
+      about: `
+        <div class="p-4 border-l-2 border-blue-500 bg-white/5 rounded-r mb-2">
+           <div class="flex items-center gap-2 mb-2">
+             <span class="text-xl">👋</span>
+             <span class="font-bold text-blue-400">Hello!</span>
+           </div>
+           <p class="text-gray-300 leading-relaxed text-sm">
+             I am <span class="font-bold text-white">M.Sinan</span>, a passionate Full Stack Developer. 
+             I bridge the gap between <span class="text-yellow-400">complex backends</span> and <span class="text-purple-400">beautiful frontends</span>.
+           </p>
+        </div>
+      `,
+      projects: `
+        <div class="space-y-4">
+            <div class="group">
+                <div class="flex items-center gap-2">
+                    <span class="text-blue-400">➜</span>
+                    <a href='#projects' class="font-bold text-white hover:text-blue-400 underline decoration-blue-500/30 underline-offset-4 transition-colors">Duo Dine</a>
+                    <span class="text-[10px] border border-green-500/30 text-green-400 px-1 rounded">Featured</span>
+                </div>
+                <div class="text-xs text-gray-500 ml-5 mt-1">Multi-restaurant food ordering system with Real-time tracking.</div>
+                <div class="flex gap-2 ml-5 mt-2">
+                    <span class="text-[10px] bg-white/5 px-1.5 py-0.5 rounded text-gray-400">Flutter</span>
+                    <span class="text-[10px] bg-white/5 px-1.5 py-0.5 rounded text-gray-400">Appwrite</span>
+                </div>
+            </div>
+            <div class="group">
+                <div class="flex items-center gap-2">
+                    <span class="text-blue-400">➜</span>
+                    <a href='#projects' class="font-bold text-white hover:text-blue-400 underline decoration-blue-500/30 underline-offset-4 transition-colors">Edan Homestay</a>
+                </div>
+                <div class="text-xs text-gray-500 ml-5 mt-1">Django-based room booking platform for seamless reservations.</div>
+                <div class="flex gap-2 ml-5 mt-2">
+                    <span class="text-[10px] bg-white/5 px-1.5 py-0.5 rounded text-gray-400">Django</span>
+                    <span class="text-[10px] bg-white/5 px-1.5 py-0.5 rounded text-gray-400">MySQL</span>
+                </div>
+            </div>
+             <div class="group">
+                <div class="flex items-center gap-2">
+                    <span class="text-blue-400">➜</span>
+                    <a href='#projects' class="font-bold text-white hover:text-blue-400 underline decoration-blue-500/30 underline-offset-4 transition-colors">Scrap Management</a>
+                </div>
+                <div class="text-xs text-gray-500 ml-5 mt-1">Geo-location based marketplace for trading scrap items.</div>
+                <div class="flex gap-2 ml-5 mt-2">
+                    <span class="text-[10px] bg-white/5 px-1.5 py-0.5 rounded text-gray-400">Flutter</span>
+                    <span class="text-[10px] bg-white/5 px-1.5 py-0.5 rounded text-gray-400">Flask</span>
+                </div>
+            </div>
+        </div>
+      `,
+      internship: `
+        <div class="space-y-2">
+            <div>
+                <span class="text-blue-400 font-bold">2024</span> <span class="text-gray-400">➜</span> <span class="text-green-400 font-bold">Full Stack MERN Intern</span>
+                <div class="text-xs text-gray-500 ml-12">ICT Academy</div>
+            </div>
+            <div>
+                <span class="text-blue-400 font-bold">2022</span> <span class="text-gray-400">➜</span> <span class="text-green-400 font-bold">Flutter Dev Trainee</span>
+                <div class="text-xs text-gray-500 ml-12">Luminar Technolab</div>
+            </div>
+        </div>
+      `,
+      education: `
+        <div class="space-y-2">
+            <div>
+                <span class="text-purple-400 font-bold">MCA</span> <span class="text-gray-400">@</span> KMCT Engineering College
+                <div class="text-xs text-gray-500">2023 - 2025</div>
+            </div>
+            <div>
+                <span class="text-purple-400 font-bold">BCA</span> <span class="text-gray-400">@</span> GEMS Arts & Science College
+                <div class="text-xs text-gray-500">2019 - 2022</div>
+            </div>
+        </div>
+      `,
+      certificates: `
+        <ul class="list-disc list-inside text-gray-300 space-y-1">
+            <li>Python Django Workshop <span class="text-xs text-gray-500">(2025)</span></li>
+            <li>Flutter Workshop <span class="text-xs text-gray-500">(2024)</span></li>
+            <li>Cyber Security and AI & ML <span class="text-xs text-gray-500">(NIELIT)</span></li>
+            <li>NPTEL Certifications <span class="text-xs text-gray-500">(DBMS, Research Methodology)</span></li>
+        </ul>
+      `,
+      skills: `
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <div class="text-yellow-400 font-bold mb-1">Languages</div>
+                <div class="text-xs text-gray-400">Python, Dart, Java, JS, PHP, HTML</div>
+            </div>
+            <div>
+                <div class="text-yellow-400 font-bold mb-1">Frameworks</div>
+                <div class="text-xs text-gray-400">Flutter, MERN, Django, Flask</div>
+            </div>
+            <div>
+                <div class="text-yellow-400 font-bold mb-1">Databases</div>
+                <div class="text-xs text-gray-400">MongoDB, Firebase, Appwrite, MySQL</div>
+            </div>
+            <div>
+                <div class="text-yellow-400 font-bold mb-1">Tools</div>
+                <div class="text-xs text-gray-400">VS Code, Android Studio, Figma</div>
+            </div>
+        </div>
+      `,
+      contact: `
+        <div class="space-y-1">
+            <div><span class="text-blue-400 w-20 inline-block">Email:</span> <a href='mailto:sinukallayi@gmail.com' class='text-gray-300 hover:text-white underline'>sinukallayi@gmail.com</a></div>
+            <div><span class="text-blue-400 w-20 inline-block">LinkedIn:</span> <a href='https://www.linkedin.com/in/sinankallayi' target='_blank' class='text-gray-300 hover:text-white underline'>sinankallayi</a></div>
+            <div><span class="text-blue-400 w-20 inline-block">GitHub:</span> <a href='https://github.com/sinankallayi' target='_blank' class='text-gray-300 hover:text-white underline'>sinankallayi</a></div>
+            <div><span class="text-blue-400 w-20 inline-block">Phone:</span> <a href='tel:+919746843149' class='text-gray-300 hover:text-white underline'>+91 9746843149</a></div>
+        </div>
+      `,
+      resume: "Click here to download: <a href='Resume.pdf' download class='text-green-400 font-bold underline hover:text-green-300'>Resume.pdf</a>",
       clear: "clear",
       date: new Date().toString(),
       whoami: "guest"
